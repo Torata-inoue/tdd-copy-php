@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  money:
+    build: ./docker/php
+    container_name: phpunit
+    tty: true
+    working_dir: /app/money
+    volumes:
+      - type: bind
+        source: ./app/money
+        target: /app/money
+  xunit:
+    build: ./docker/php
+    container_name: xunit
+    tty: true
+    working_dir: /app/xunit
+    volumes:
+      - type: bind
+        source: ./app/xunit
+        target: /app/xunit
