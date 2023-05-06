@@ -8,8 +8,9 @@ class Money
     {
     }
 
-    public function equals(Money $object): bool
+    public function equals(Money $money): bool
     {
-        return $this->amount == $object->amount;
+        return $this->amount == $money->amount
+            && $this::class === $money::class;
     }
 }
