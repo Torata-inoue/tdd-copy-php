@@ -2,7 +2,7 @@
 
 namespace Money;
 
-class Dollar
+class Franc
 {
     public function __construct(private readonly int $amount)
     {
