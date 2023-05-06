@@ -2,19 +2,15 @@
 
 namespace Money;
 
-class Franc
+class Franc extends Money
 {
-    public function __construct(private readonly int $amount)
+    public function __construct(int $amount)
     {
+        parent::__construct($amount);
     }
 
     public function times(int $multiplier): self
     {
         return new self($this->amount * $multiplier);
-    }
-
-    public function equals(object $object): bool
-    {
-        return $this->amount == $object->amount;
     }
 }
