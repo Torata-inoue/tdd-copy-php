@@ -4,10 +4,12 @@
 - [x] ~~Dollarの副作用どうする？~~
 - [ ] Moneyの丸処理どうする？ 
 - [x] ~~equals()~~
-- [ ] hasCode()
+- [ ] hashCode()
 - [ ] nullとの等価比較
 - [ ] 他オブジェクトとの等価比較
 - [x] ~~5CHF * 2 = 10CHF~~
 - [ ] DollarとFrancの重複
 - [x] ~~equalsの一般化~~
 - [ ] timesの一般化
+- [x] ~~FrancとDollarを比較する~~
+- [ ] 通貨の概念
