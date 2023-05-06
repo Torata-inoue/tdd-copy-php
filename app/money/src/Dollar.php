@@ -4,13 +4,8 @@ namespace Money;
 
 class Dollar extends Money
 {
-    public function __construct(int $amount)
+    public function times(int $multiplier): Money
     {
-        parent::__construct($amount);
-    }
-
-    public function times(int $multiplier): self
-    {
-        return new self($this->amount * $multiplier);
+        return self::dollar($this->amount * $multiplier);
     }
 }
