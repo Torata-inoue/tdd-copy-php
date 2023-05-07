@@ -2,7 +2,7 @@
 
 namespace Money;
 
-class Money
+class Money implements Expression
 {
     public function __construct(
         protected readonly int $amount,
@@ -34,5 +34,10 @@ class Money
     public function currency(): string
     {
         return $this->currency;
+    }
+
+    public function plus(Money $added): Expression
+    {
+        return new Money($this->amount + $added->amount, $this->currency);
     }
 }
