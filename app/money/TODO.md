@@ -23,3 +23,5 @@ TODOがごちゃごちゃしてきたので整理
 - [x] ~~Bank.reduce(Money)~~
 - [x] ~~Moneyを変換して換算を行う~~
 - [x] ~~Reduce(Bank, string)~~
+- [ ] Sum.plus
+- [ ] Expression.times
