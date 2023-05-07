@@ -17,8 +17,13 @@ class TestCase
         $result->testStarted();
 
         $this->setUp();
-        $method = $this->name;
-        $this->{$method}();
+
+        try {
+            $method = $this->name;
+            $this->{$method}();
+        } catch (Exception $e) {
+            $result->testFailed();
+        }
         $this->tearDown();
 
         return $result;
@@ -77,15 +82,25 @@ class TestCaseTest extends TestCase
         $result = $test->run();
         assert($result->summary() === '1 run, 1 failed');
     }
+
+    public function testFailedResultFormatting()
+    {
+        $result = new TestResult();
+        $result->testStarted();
+        $result->testFailed();
+        assert($result->summary() === '1 run, 1 failed');
+    }
 }
 
 class TestResult
 {
     private int $runCount;
+    private int $errorCount;
 
     public function __construct()
     {
         $this->runCount = 0;
+        $this->errorCount = 0;
     }
 
     public function testStarted(): void
@@ -93,13 +108,19 @@ class TestResult
         $this->runCount = $this->runCount + 1;
     }
 
+    public function testFailed(): void
+    {
+        $this->errorCount = $this->errorCount + 1;
+    }
+
     public function summary(): string
     {
-        return "{$this->runCount} run, 0 failed";
+        return "{$this->runCount} run, {$this->errorCount} failed";
     }
 }
 
 
-(new TestCaseTest('testTemplateMethod'))->run();
-(new TestCaseTest('testResult'))->run();
-//(new TestCaseTest('testFailedResult'))->run();
+echo (new TestCaseTest('testTemplateMethod'))->run()->summary() . "\n";
+echo (new TestCaseTest('testResult'))->run()->summary() . "\n";
+echo (new TestCaseTest('testFailedResult'))->run()->summary() . "\n";
+echo (new TestCaseTest('testFailedResultFormatting'))->run()->summary() . "\n";
